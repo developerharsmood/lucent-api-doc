@@ -13,7 +13,7 @@ components:
 security:
   - bearerAuth: []
 servers:
-  - url: http://127.0.0.1:8000/api
+  - url: https://moodprojects.xyz/lucent/admin/public/api
 
  ##### Banners #####
 paths:
