@@ -1,0 +1,552 @@
+openapi: 3.0.0
+info:
+  title: Lucent API
+  version: 1.0.0
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+servers:
+  - url: http://127.0.0.1:8000/api
+
+ ##### Banners #####
+paths:
+  /banners:
+    post:
+      summary: Get Banners
+      description: Get Banners, optionally specifying a slug.
+      requestBody:   
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: Optional slug identifier
+                  example: career-application             
+      responses:
+        '201':
+          description: Banner Retrieved Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  slug:
+                    type: string
+                    example: career-application
+        '400':
+          description: Bad request 
+
+ ##### Pages #####
+  /pages:
+    post:
+      summary: Get Pages
+      description: Get Pages, optionally specifying a slug.
+      requestBody:   
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: Optional slug identifier
+                  example: about-us
+      responses:
+        '201':
+          description: Pages Retrieved Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  slug:
+                    type: string
+                    example: about-us
+        '400':
+          description: Bad request 
+
+  ##### Get projects #####
+  /projects:
+    get:
+      summary: Get Projects
+      description: Get Projects, optionally specifying a slug.      
+      responses:
+        '201':
+          description: Projects Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+  ##### Project Details #####
+  /project-details:
+    post:
+      summary: Project Details
+      description: Get project details, optionally specifying a slug.
+      requestBody:   
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: Optional slug identifier
+                  example: coca-cola
+              required:
+                - slug
+      responses:
+        '201':
+          description: Project Details Retrieved Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  slug:
+                    type: string
+                    example: coca-cola
+        '400':
+          description: Bad request 
+
+   ##### get Services #####
+
+  /services:
+    get:
+      summary: Get Services
+      description: Get Services, optionally specifying a slug.   
+      responses:
+        '201':
+          description: Services Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+#### Contact Us ####
+
+  /contact-us:
+    post:
+      summary: Contact Us
+      description: Save Contact details
+      requestBody:   
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name identifier
+                  example: John-doe
+                email:
+                  type: string
+                  description: email identifier
+                  example: johndoe@test.com
+                subject:
+                  type: string
+                  description: subject identifier
+                  example: Enquiry
+                message:
+                  type: string
+                  description: message identifier
+                  example: About products
+                phone:
+                  type: int
+                  description: phone identifier
+                  example: 00-000-0000
+                company:
+                  type: string
+                  description: message identifier
+                  example: About company
+                country:
+                  type: string
+                  description: country identifier
+                  example: About country
+              required:
+                - name
+                - email
+                - phone
+                - company
+                - country
+      responses:
+        '201':
+          description: Contact Details Submitted Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  name:
+                    type: string                 
+                    example: John-doe
+                  email:
+                    type: string                  
+                    example: johndoe@test.com
+                  subject:
+                    type: string                 
+                    example: Enquiry
+                  message:
+                    type: string           
+                    example: About products
+                  phone:
+                    type: int
+                    example: 00-000-0000
+                company:
+                  type: string
+                  example: About company
+                country:
+                  type: string
+                  example: About country
+        '400':
+          description: Bad request 
+
+##### get Teams #####
+
+  /teams:
+    get:
+      summary: Get Teams
+      description: Get Teams.   
+      responses:
+        '201':
+          description: Teams Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+  ##### Get Page Sections #####
+  /sections:
+    post:
+      summary: Page Sections
+      description: Get page section details.
+      requestBody:   
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_slug:
+                  type: string
+                  description: slug identifier
+                  example: about-us
+              required:
+                - page_slug
+      responses:
+        '201':
+          description: Page section  Retrieved Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  slug:
+                    type: string
+                    example: about-us
+        '400':
+          description: Bad request 
+
+  ##### Get about feature #####
+  /about-feature:
+    post:
+      summary: About Feature
+      description: About Feature details.
+      requestBody:   
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: slug identifier
+                  example: why-choose-us
+      responses:
+        '201':
+          description: About Feature Retrieved Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  slug:
+                    type: string
+                    example: why-choose-us
+        '400':
+          description: Bad request 
+
+  ##### Get Divisions #####
+
+  /divisions:
+    post:
+      summary: About Divisions
+      description: About Divisions details.
+      requestBody:   
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: slug identifier
+                  example: lucent-infra-division
+      responses:
+        '201':
+          description: Divisions Retrieved Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  slug:
+                    type: string
+                    example: lucent-infra-division
+        '400':
+          description: Bad request 
+
+  ##### Get Documents #####
+  /careers:
+    get:
+      summary: Get careers
+      description: Get careers.   
+      responses:
+        '201':
+          description: Careers Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+  ##### Get Careers #####
+
+  /documents:
+    get:
+      summary: Get documents
+      description: Get documents   
+      responses:
+        '201':
+          description: Documents Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+  
+  ##### Get contact details #####
+
+  /contact-details:
+    get:
+      summary: Get contact details
+      description: Get contact details
+      responses:
+        '201':
+          description: Contact Details Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+  ##### Submit Career Form #####
+
+  /submit-career-form:
+    post:
+      summary: Career Form Submission
+      description: Career Form Submission
+      requestBody:   
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                career_id:
+                  type: int
+                  description: carrer id identifier
+                  example: 1
+                name:
+                  type: string
+                  description: email identifier
+                  example: johndoe
+                email:
+                  type: string
+                  description: email identifier
+                  example: johndoe@test.com
+                coverletter:
+                  type: string
+                  description: coverletter identifier
+                  example: Enquiry
+                resume:
+                  type: string
+                  description: resume identifier
+                  example: About personal details
+                other_docs:
+                  type: int
+                  description: other docs identifier
+                  example: About other docs
+              
+              required:
+                - career_id
+                - name
+                - email             
+        
+      responses:
+        '201':
+          description: Career Form Submitted Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  career_id:
+                    type: int
+                    description: carrer id identifier
+                    example: 1
+                  name:
+                    type: string
+                    description: email identifier
+                    example: johndoe
+                  email:
+                    type: string
+                    description: email identifier
+                    example: johndoe@test.com
+                  coverletter:
+                    type: string
+                    description: coverletter identifier
+                    example: Enquiry
+                  resume:
+                    type: string
+                    description: resume identifier
+                    example: About personal details
+                  other_docs:
+                    type: int
+                    description: other docs identifier
+                    example: About other docs
+        '400':
+          description: Bad request 
+
+  ##### Get testimonials #####
+
+  /testimonials:
+    get:
+      summary: Get testimonials
+      description: Get testimonials
+      responses:
+        '201':
+          description: Testimonials Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+  ##### Get clients #####
+
+  /clients:
+    get:
+      summary: Get clients
+      description: Get clients
+      responses:
+        '201':
+          description: Clients Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+  
+  #### Submit document form ####
+
+  /submit-document-request:
+    post:
+      summary: Submit Document Request
+      description: Submit Document Request
+      requestBody:   
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                document_id:
+                  type: string
+                  description: Document id identifier
+                  example: 1
+                name:
+                  type: string
+                  description: name identifier
+                  example: lucent
+                email:
+                  type: string
+                  description: slug identifier
+                  example: test@test.com
+                purpose:
+                  type: string
+                  description: About Product Enquiry
+                  example: About Product Enquiry
+      responses:
+        '201':
+          description: Divisions Retrieved Successfuly!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:            
+                  document_id:
+                    type: string
+                    description: Document id identifier
+                    example: 1
+                  name:
+                    type: string
+                    description: name identifier
+                    example: lucent
+                  email:
+                    type: string
+                    description: slug identifier
+                    example: test@test.com
+                  purpose:
+                    type: string
+                    description: About Product Enquiry
+                    example: About Product Enquiry
+        '400':
+          description: Bad request 
+
+  ##### Get Categories #####
+
+  /categories:
+    get:
+      summary: Get categories
+      description: Get categories
+      responses:
+        '201':
+          description: Categories Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+  ##### Get Filter Types #####
+
+  /filter-types:
+    get:
+      summary: Get filter types
+      description: Get filter types
+      responses:
+        '201':
+          description: Filter types Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+##### Get products & projects #####
+
+  /products-and-projects:
+    get:
+      summary: Get products & projects
+      description: Get products & projects
+      responses:
+        '201':
+          description: Products & Projects Retrieved Successfuly!         
+        '400':
+          description: Bad request 
+
+##### Departments #####
+
+  /departments:
+    get:
+      summary: Get departments
+      description: Get departments
+      responses:
+        '201':
+          description: Departments Retrieved Successfuly!         
+        '400':
+          description: Bad request 
